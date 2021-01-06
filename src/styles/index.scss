@@ -1,0 +1,137 @@
+@import "~normalize.css";
+
+.wrapper {
+  .container {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+  .header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #A4CFC5;
+      z-index: 2;
+    }
+      .header__body {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        height: 80px;
+        align-items: center;
+        .header__list {
+          display: flex;
+          position: relative;
+          z-index: 2;
+          li {
+            list-style: none;
+            margin: 0 0 0 20px;
+            @media (max-width: 768px) {
+              margin: 0 0 20px 0;
+            }
+          }
+          .header__link {
+            color: white;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 14px;
+            &:hover {
+              border-bottom: 1px solid black;
+            }
+          }
+          @media (max-width: 768px) {
+            display: block;
+          }
+        }
+        .header__logo {
+          flex: 0 0 60px;
+          overflow: hidden;
+          position: relative;
+          z-index: 3;
+        }
+        .header__burger {
+          display: none;
+          &.active {
+            span {
+              transform: scale(0);
+            }
+            &:before {
+              transform: rotate(45deg);
+              top: 9px;
+            }
+            &:after {
+              transform: rotate(-45deg);
+              bottom: 9px;
+            }
+          }
+          @media (max-width: 768px) {
+            display: block;
+            position: relative;
+            width: 30px;
+            height: 20px;
+            z-index: 3;
+          }
+          &:before, &:after {
+            @media (max-width: 768px) {
+              content: '';
+              background-color: white;
+              position: absolute;
+              width: 100%;
+              height: 2px;
+              left: 0;
+              transition: all 0.3s ease 0s;
+            }
+          }
+          &:before {
+            @media (max-width: 768px) {
+              top: 0;
+            }
+          }
+          &:after {
+            @media (max-width: 768px) {
+              bottom: 0;
+            }
+          }
+          span {
+            @media (max-width: 768px) {
+              content: '';
+              background-color: white;
+              position: absolute;
+              width: 100%;
+              height: 2px;
+              left: 0;
+              top: 9px;
+              transition: all 0.3s ease 0s;
+            }
+          }
+        }
+        .header__menu {
+          &.active {
+            top: 0;
+          }
+          @media (max-width: 768px) {
+            position: fixed;
+            top: -110%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: chartreuse;
+            padding: 70px 10px 20px 10px;
+            transition: all 0.3s ease 0s;
+          }
+        }
+        @media (max-width: 768px) {
+          height: 50px;
+        }
+      }
+  }
+}
