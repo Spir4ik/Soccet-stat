@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
+  "homepage": "https://spir4ik.github.io/Soccet-stat/",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "build": "cross-env NODE_ENV=production webpack --mode production",
@@ -43,6 +44,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "@material-ui/core": "^4.11.2",
     "axios": "^0.21.0",
     "classnames": "^2.2.6",
     "history": "^5.0.0",
