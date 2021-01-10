@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-// import axios from 'axios';
 import Header from './components/Header.jsx';
 import CardLeague from "./components/CardLeague.jsx";
+import LeaguePage from "./components/LeaguePage.jsx";
+import {Route, Switch} from "react-router";
 import './styles/index.scss';
 import './styles/stylesLeagueList.scss';
 
@@ -9,8 +10,11 @@ const App = () => {
 
   return(
           <div className="wrapper">
-            <Header />
-            <CardLeague />
+              <Header />
+              <Switch>
+                  <Route exact path='/' component={CardLeague} />
+                  <Route path='/listleague' component={LeaguePage}/>
+              </Switch>
           </div>
       );
 }

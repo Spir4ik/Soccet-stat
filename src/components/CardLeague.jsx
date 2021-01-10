@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import {useDispatch, useSelector} from "react-redux";
+import Link from "react-router-dom";
 import leagueList from "../leagueList";
 import SelectSeason from "./SelectSeason.jsx";
 import * as actions from '../actions'
@@ -10,24 +11,6 @@ function CardLeague() {
     const dispatch = useDispatch();
 
     console.log(numberLeague);
-
-    const showCurrentLeague = async (id) => {
-        try {
-            await axios({
-                url: `https://api.football-data.org/v2/competitions/2001/`,
-                method: 'GET',
-                headers: {
-                    'X-Auth-Token': '31da4377f6bd472d89c5c79443bfb5db',
-                    'Content-type': 'application/json',
-                }
-            }).then(res => console.log(res))
-        }
-        catch (e) {
-            alert(`Что то пошло не так! ${e}`)
-        }
-    }
-
-    showCurrentLeague()
 
     return(
         <div className="content">
@@ -40,7 +23,11 @@ function CardLeague() {
                         return(
                             <div className="cardLeague"
                                  key={id}
-                                 onClick={() => dispatch(actions.getNumberLeague({numberLeague: id}))}
+                                 onClick={() => {
+                                     window.location.replace(window.location.href + 'listleague')
+                                     dispatch(actions.getNumberLeague({numberLeague: id}))
+                                     }
+                                 }
                             >
                                 <img src={img} alt="" />
                                 <div className="cardLeague__footer">

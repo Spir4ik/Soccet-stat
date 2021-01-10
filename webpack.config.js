@@ -46,7 +46,7 @@ const babelOptions = (preset) => {
   if (preset) {
     opts.presets.push(preset)
   }
-  return opts
+  return opts;
 };
 
 module.exports = {
@@ -87,7 +87,7 @@ module.exports = {
     contentBase: path.resolve(__dirname, 'dist'),
     open: true,
     historyApiFallback: true,
-    port: 4000,
+    port: 3000,
   },
   module: {
     rules: [

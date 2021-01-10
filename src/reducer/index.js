@@ -18,5 +18,5 @@ const yearSeason = handleActions({
 
 export default combineReducers({
     numberLeague,
-    yearSeason
+    yearSeason,
 })
