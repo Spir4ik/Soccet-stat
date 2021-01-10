@@ -530,3 +530,94 @@ body {
   text-align: center;
   text-transform: uppercase;
 }
+
+.league {
+  padding: 110px 25px 0 25px;
+}
+.league .container {
+  max-width: 800px;
+}
+.league .container .league__row {
+  display: flex;
+  flex-direction: column;
+}
+.league .container .league__row .league__header {
+  display: flex;
+}
+.league .container .league__row .league__header .header__logo {
+  border: 1px solid #F2F2F2;
+  border-radius: 5px;
+}
+.league .container .league__row .league__header .header__info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex: 0 1 20%;
+  margin: 35px 0 0 20px;
+}
+.league .container .league__row .league__nav {
+  margin: 15px 0 0 0;
+  border-bottom: 5px solid #A4CFC5;
+}
+.league .container .league__row .league__nav .nav__item {
+  display: inline-flex;
+  align-items: center;
+  height: 25px;
+  background-color: #C6C6C6;
+  font-size: 15px;
+  padding: 5px;
+  border-left: 1px solid white;
+}
+.league .container .league__row .league__nav .nav__item:hover {
+  cursor: pointer;
+  background-color: #A9A9A9;
+}
+.league .container .league__row .league__nav .nav__item a {
+  text-decoration: none;
+  color: black;
+}
+.league .container .league__row .league__nav .nav__item.first {
+  border-left: none;
+}
+.league .container .league__row .league__body {
+  margin: 15px 0 0 0;
+}
+.league .container .league__row .league__body .body__results .latter-result.scheduled-mathes {
+  margin: 15px 0 0 0;
+}
+.league .container .league__row .league__body .body__results .latter-result .tabs-body {
+  border-bottom: 5px solid #A4CFC5;
+  text-align: center;
+}
+.league .container .league__row .league__body .body__results .latter-result .tabs-body .tabs-text {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 1 30%;
+  color: white;
+  height: 25px;
+  padding: 5px;
+  background-color: #A4CFC5;
+  font-size: 15px;
+}
+.league .container .league__row .league__body .body__results .latter-result .league-statistics .league-statistics__body .league-statistics__header {
+  display: flex;
+  align-items: center;
+  background-color: #C6C6C6;
+  color: black;
+  padding: 5px;
+  font-size: 15px;
+}
+.league .container .league__row .league__body .body__results .latter-result .league-statistics .league-statistics__body .league-statistics__item .league-statistics__element {
+  display: flex;
+  border: 2px solid #F2F2F2;
+  padding: 5px;
+  font-size: 15px;
+}
+.league .container .league__row .league__body .body__results .latter-result .league-statistics .league-statistics__body .league-statistics__item .league-statistics__element .league-statistics__date {
+  flex: 0 1 40%;
+}
+@media (max-width: 768px) {
+  .league .container .league__row .league__body .body__results .latter-result .league-statistics .league-statistics__body .league-statistics__item .league-statistics__element {
+    font-size: 8px;
+  }
+}
