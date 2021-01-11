@@ -10,8 +10,6 @@ function CardLeague() {
     const numberLeague = useSelector(state => state.numberLeague);
     const dispatch = useDispatch();
 
-    console.log(numberLeague);
-
     return(
         <div className="content">
             <div className="container">
