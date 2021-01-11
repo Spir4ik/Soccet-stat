@@ -578,6 +578,10 @@ body {
 }
 .league .container .league__row .league__nav .nav__item.first {
   border-left: none;
+  background-color: #A4CFC5;
+}
+.league .container .league__row .league__nav .nav__item.first a {
+  color: white;
 }
 .league .container .league__row .league__body {
   margin: 15px 0 0 0;
@@ -614,6 +618,8 @@ body {
   font-size: 15px;
 }
 .league .container .league__row .league__body .body__results .latter-result .league-statistics .league-statistics__body .league-statistics__item .league-statistics__element .league-statistics__date {
+  display: flex;
+  align-items: center;
   flex: 0 1 40%;
 }
 @media (max-width: 768px) {
