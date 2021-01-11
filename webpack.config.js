@@ -56,7 +56,7 @@ module.exports = {
   },
   output: {
     filename: '[name].[contenthash].js',
-    path: `${__dirname}/dist`,
+    path: path.resolve(__dirname, 'dist'),
     // publicPath: '/dist/',
   },
   resolve: {
@@ -65,7 +65,7 @@ module.exports = {
   optimization: optimization(),
   plugins: [
     new HTMLWebpackPlugin({
-      template: "./public/index.html",
+      template: "./index.html",
       minify: {
         collapseWhitespace: isProd,
       }

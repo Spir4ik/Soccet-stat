@@ -1,8 +1,16 @@
 import React from 'react'
 import ScheduledMatches from "./ScheduledMatches.jsx";
+import FinishedMatches from "./FinishedMatches.jsx";
 
 function ListCurrentLeague(props) {
-    const {scheduledMatches} = props
+    const {scheduledMatches, finishedMatches} = props
+
+    const ConclusionMatches = () => {
+        const LastElems = finishedMatches.length - 16;
+        return finishedMatches.splice(LastElems)
+    }
+
+    console.log(ConclusionMatches())
 
     return(
         <div className="league">
@@ -42,14 +50,17 @@ function ListCurrentLeague(props) {
                                             Какой то там тур
                                         </div>
                                         <div className="league-statistics__item">
-                                            <div className="league-statistics__element">
-                                                <div className="league-statistics__date">
-                                                    09.09/1242
-                                                </div>
-                                                <div className="league-statistics__matches">
-                                                    Бавария 0-2 Атлетико
-                                                </div>
-                                            </div>
+                                            {ConclusionMatches().map(({awayTeam, homeTeam, id, utcDate, score}) => {
+                                                return(
+                                                    <FinishedMatches
+                                                        awayTeam={awayTeam}
+                                                        homeTeam={homeTeam}
+                                                        key={id}
+                                                        utcDate={utcDate}
+                                                        score={score}
+                                                    />
+                                                )
+                                            })}
                                         </div>
                                     </div>
                                 </div>
