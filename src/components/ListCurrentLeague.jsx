@@ -3,7 +3,7 @@ import ScheduledMatches from "./ScheduledMatches.jsx";
 import FinishedMatches from "./FinishedMatches.jsx";
 
 function ListCurrentLeague(props) {
-    const {scheduledMatches, finishedMatches} = props
+    const {scheduledMatches, finishedMatches, numberLeagueImg} = props
 
     const ConclusionMatches = () => {
         const LastElems = finishedMatches.length - 16;
@@ -18,7 +18,7 @@ function ListCurrentLeague(props) {
                 <div className="league__row">
                     <div className="league__header">
                         <div className="header__logo">
-                            <img src="../image/logo_cl.png" alt=""/>
+                            <img src={numberLeagueImg} alt=""/>
                         </div>
                         <div className="header__info">
                             <span>Лига чемпионов</span>

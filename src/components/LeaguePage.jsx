@@ -8,12 +8,13 @@ function LeaguePage() {
     const [finishedMatches, setFinishedMatches] = useState([]);
     const [scheduledMatches, setScheduledMatches] = useState([]);
 
-    const numberLeague = useSelector(state => state.numberLeague);
+    const numberLeagueId = useSelector(state => state.numberLeague.numberLeagueId);
+    const numberLeagueImg = useSelector(state => state.numberLeague.numberLeagueImg);
 
     useEffect(async () => {
         try {
            await axios({
-                url: `https://api.football-data.org/v2/competitions/${numberLeague}/matches?status=SCHEDULED`,
+                url: `https://api.football-data.org/v2/competitions/${numberLeagueId}/matches?status=SCHEDULED`,
                 method: 'GET',
                 headers: {
                     'X-Auth-Token': '31da4377f6bd472d89c5c79443bfb5db',
@@ -22,7 +23,7 @@ function LeaguePage() {
             }).then(res => setScheduledMatches(res.data.matches))
 
             await axios({
-                url: `https://api.football-data.org/v2/competitions/${numberLeague}/matches?status=FINISHED`,
+                url: `https://api.football-data.org/v2/competitions/${numberLeagueId}/matches?status=FINISHED`,
                 method: 'GET',
                 headers: {
                     'X-Auth-Token': '31da4377f6bd472d89c5c79443bfb5db',
@@ -42,6 +43,7 @@ function LeaguePage() {
             <ListCurrentLeague
                 scheduledMatches={scheduledMatches}
                 finishedMatches={finishedMatches}
+                numberLeagueImg={numberLeagueImg}
             />
         </React.Fragment>
     )
