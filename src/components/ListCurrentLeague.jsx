@@ -1,16 +1,33 @@
 import React from 'react'
 import ScheduledMatches from "./ScheduledMatches.jsx";
 import FinishedMatches from "./FinishedMatches.jsx";
+import {useSelector} from "react-redux";
 
 function ListCurrentLeague(props) {
-    const {scheduledMatches, finishedMatches, numberLeagueImg} = props
+    const {scheduledMatches, finishedMatches, numberLeagueImg, yearSeason, nameLeague} = props;
 
     const ConclusionMatches = () => {
         const LastElems = finishedMatches.length - 16;
         return finishedMatches.splice(LastElems)
     }
 
-    console.log(ConclusionMatches())
+    const currentSeason = () => {
+        switch (yearSeason) {
+            case "2020":
+                return "2020 / 2021"
+            case "2019":
+                return "2019 / 2020"
+            case "2018":
+                return "2018 / 2019"
+            case "2017":
+                return "2017 / 2018"
+            default:
+                return null
+        }
+    }
+
+    // console.log(finishedMatches.filter(item => item.stage.includes("GROUP_STAGE") ? item : null))
+
 
     return(
         <div className="league">
@@ -21,8 +38,8 @@ function ListCurrentLeague(props) {
                             <img src={numberLeagueImg} alt=""/>
                         </div>
                         <div className="header__info">
-                            <span>Лига чемпионов</span>
-                            <p>2020 / 2021</p>
+                            <span>{nameLeague}</span>
+                            <p>{currentSeason()}</p>
                         </div>
                     </div>
                     <div className="league__nav">

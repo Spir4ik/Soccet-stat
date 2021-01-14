@@ -3,8 +3,8 @@ import { handleActions } from 'redux-actions';
 import * as actions from '../actions'
 
 const numberLeague = handleActions({
-    [actions.getNumberLeague](state, {payload: {numberLeagueId, numberLeagueImg}}) {
-        return {...state, numberLeagueId, numberLeagueImg}
+    [actions.getNumberLeague](state, {payload: {numberLeagueId, numberLeagueImg, nameLeague}}) {
+        return {...state, numberLeagueId, numberLeagueImg, nameLeague}
     }
 }, {}
 )

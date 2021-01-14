@@ -10,6 +10,8 @@ function LeaguePage() {
 
     const numberLeagueId = useSelector(state => state.numberLeague.numberLeagueId);
     const numberLeagueImg = useSelector(state => state.numberLeague.numberLeagueImg);
+    const yearSeason = useSelector(state => state.yearSeason);
+    const nameLeague = useSelector(state => state.numberLeague.nameLeague);
 
     useEffect(async () => {
         try {
@@ -37,13 +39,15 @@ function LeaguePage() {
     }, [])
 
 
-    console.log(scheduledMatches);
+    // console.log(scheduledMatches);
     return(
         <React.Fragment>
             <ListCurrentLeague
                 scheduledMatches={scheduledMatches}
                 finishedMatches={finishedMatches}
                 numberLeagueImg={numberLeagueImg}
+                yearSeason={yearSeason}
+                nameLeague={nameLeague}
             />
         </React.Fragment>
     )
