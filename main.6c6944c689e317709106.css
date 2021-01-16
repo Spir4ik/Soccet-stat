@@ -532,7 +532,7 @@ body {
 }
 
 .league {
-  padding: 110px 25px 0 25px;
+  padding: 85px 25px 0 25px;
 }
 .league .container {
   max-width: 800px;
@@ -551,6 +551,7 @@ body {
 .league .container .league__row .league__header .header__info {
   display: flex;
   align-items: center;
+  flex-direction: column;
   flex-wrap: wrap;
   flex: 0 1 20%;
   margin: 35px 0 0 20px;
@@ -577,7 +578,7 @@ body {
   cursor: pointer;
   background-color: #A9A9A9;
 }
-.league .container .league__row .league__nav .nav__item a {
+.league .container .league__row .league__nav .nav__item p {
   text-decoration: none;
   color: black;
 }
@@ -585,7 +586,7 @@ body {
   border-left: none;
   background-color: #A4CFC5;
 }
-.league .container .league__row .league__nav .nav__item.first a {
+.league .container .league__row .league__nav .nav__item.first p {
   color: white;
 }
 .league .container .league__row .league__body {
