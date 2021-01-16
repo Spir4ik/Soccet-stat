@@ -12,7 +12,6 @@ function ScheduledMatches(props) {
                 {moment(utcDate).format('LLL')}
             </div>
             <div className="league-statistics__matches">
-                {/*{`${homeTeam.name} - ${awayTeam.name}`}*/}
                 <p>{homeTeam.name} - {awayTeam.name}</p>
             </div>
         </div>

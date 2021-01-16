@@ -29,7 +29,7 @@ function SelectSeason() {
             <Select
                 value={yearSeason}
                 onChange={(e) =>
-                    dispatch(actions.getYearSeason({yearSeason: e.target.value}))
+                    dispatch(actions.getYearSeason({ yearSeason: e.target.value }))
                 }
                 displayEmpty
                 className={classes.selectEmpty}
@@ -40,7 +40,6 @@ function SelectSeason() {
                 </MenuItem>
                 <MenuItem value={"2019"}>2019 / 2020</MenuItem>
                 <MenuItem value={"2018"}>2018 / 2019</MenuItem>
-                <MenuItem value={"2017"}>2017 / 2018</MenuItem>
             </Select>
             <FormHelperText>Выберите сезон</FormHelperText>
         </FormControl>
