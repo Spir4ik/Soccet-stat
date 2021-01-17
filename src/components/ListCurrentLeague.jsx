@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import axios from "axios";
 import { Link } from 'react-router-dom';
 import ScheduledMatches from './ScheduledMatches.jsx';
 import FinishedMatches from './FinishedMatches.jsx';
@@ -27,8 +26,6 @@ function ListCurrentLeague(props) {
         return null;
     }
   };
-
-
 
     return (
     <div className="league">
