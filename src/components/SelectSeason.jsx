@@ -23,13 +23,20 @@ function SelectSeason() {
     const classes = useStyles();
     const yearSeason = useSelector(state => state.yearSeason);
     const dispatch = useDispatch();
+    const loadStatusScheduled = useSelector(state => state.loadStatusScheduled);
+    const loadStatusFinished = useSelector(state => state.loadStatusFinished);
+
 
     return(
         <FormControl className={classes.formControl}>
             <Select
                 value={yearSeason}
                 onChange={(e) =>
-                    dispatch(actions.getYearSeason({ yearSeason: e.target.value }))
+                    dispatch(
+                        actions.getYearSeason({ yearSeason: e.target.value }),
+                        actions.getLoadStatusScheduled({loadStatusScheduled: true}),
+                        actions.getLoadStatusFinished({loadStatusFinished: true})
+                    )
                 }
                 displayEmpty
                 className={classes.selectEmpty}

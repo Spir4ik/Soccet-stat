@@ -22,7 +22,7 @@ function CardLeague() {
                             <div className="cardLeague"
                                  key={id}
                                  onClick={() => {
-                                     window.location.replace(window.location.href + 'listleague')
+                                     window.location.assign(window.location.href + 'listleague')
                                      dispatch(actions.getNumberLeague({numberLeagueId: id, numberLeagueImg: img, nameLeague: name}))
                                      }
                                  }

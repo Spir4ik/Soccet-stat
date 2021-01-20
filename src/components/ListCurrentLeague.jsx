@@ -1,18 +1,27 @@
-import React, {useEffect} from 'react';
-import { Link } from 'react-router-dom';
-import ScheduledMatches from './ScheduledMatches.jsx';
-import FinishedMatches from './FinishedMatches.jsx';
+import React, {useState} from 'react';
+import {useSelector} from "react-redux";
+import BodyResults from "./BodyResults.jsx";
 import SelectSeason from "./SelectSeason.jsx";
+import OnlyResults from "./OnlyResults.jsx";
+import CalendarPage from "./CalendarPage.jsx";
+// import LeagueNav from "./LeagueNav.jsx";
+import LoadComponent from "./LoadComponent.jsx";
 
 function ListCurrentLeague(props) {
-  const {
-    scheduledMatches, finishedMatches, numberLeagueImg, yearSeason, nameLeague,
-  } = props;
+  const [showOverview, setShowOverview] = useState(true);
+  const [showResults, setShowResults] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
 
-  const ConclusionMatches = () => {
-    const LastElems = finishedMatches.length - 16;
-    return finishedMatches.slice(LastElems);
-  };
+  const loadStatusScheduled = useSelector(state => state.loadStatusScheduled);
+  const loadStatusFinished = useSelector(state => state.loadStatusFinished);
+
+  const {
+    scheduledMatches,
+    finishedMatches,
+    numberLeagueImg,
+    yearSeason,
+    nameLeague,
+  } = props;
 
   const currentSeason = () => {
     switch (yearSeason) {
@@ -42,75 +51,42 @@ function ListCurrentLeague(props) {
             </div>
           </div>
           <div className="league__nav">
-            <div className="nav__item first">
+            <div className={showOverview ? "nav__item first" : "nav__item"} onClick={() => {
+              setShowOverview(true)
+              setShowResults(false)
+              setShowCalendar(false)
+            }}>
               <p>Обзор</p>
             </div>
-            <div className="nav__item">
-              <Link to={(location) => ({ ...location, pathname: '/results' })}>
-                <p>Результаты</p>
-              </Link>
+            <div className={showResults ? "nav__item first" : "nav__item"} onClick={() => {
+              setShowOverview(false)
+              setShowResults(true)
+              setShowCalendar(false)
+            }}>
+              <p>Результаты</p>
             </div>
-            <div className="nav__item">
+            <div className={showCalendar ? "nav__item first" : "nav__item"} onClick={() => {
+              setShowOverview(false)
+              setShowResults(false)
+              setShowCalendar(true)
+            }}>
               <p>Календарь</p>
             </div>
           </div>
           <div className="league__body">
-            <div className="body__results">
-              <div className="latter-result">
-                <div className="tabs-body">
-                  <div className="tabs-text">
-                    <span>Последние результаты</span>
-                  </div>
-                </div>
-                <div className="league-statistics">
-                  <div className="league-statistics__body">
-                    <div className="league-statistics__header">
-                          Какой то там тур
-                    </div>
-                    <div className="league-statistics__item">
-                          {ConclusionMatches().map(({
-                              awayTeam, homeTeam, id, utcDate, score,
-                            }) => (
-                                <FinishedMatches
-                                    awayTeam={awayTeam}
-                                    homeTeam={homeTeam}
-                                    key={id}
-                                    utcDate={utcDate}
-                                    score={score}
-                                  />
-                            ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="latter-result scheduled-mathes">
-                <div className="tabs-body">
-                  <div className="tabs-text">
-                    <span>Предстоящие матчи</span>
-                  </div>
-                </div>
-                <div className="league-statistics">
-                  <div className="league-statistics__body">
-                    <div className="league-statistics__header">
-                          Тур...
-                    </div>
-                    <div className="league-statistics__item">
-                          {props.scheduledMatches.map(({
-                              awayTeam, homeTeam, id, utcDate, stage,
-                            }) => (
-                                <ScheduledMatches
-                                    awayTeam={awayTeam}
-                                    homeTeam={homeTeam}
-                                    key={id}
-                                    utcDate={utcDate}
-                                    stage={stage}
-                                  />
-                            ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {showOverview && <BodyResults
+                finishedMatches={finishedMatches}
+                scheduledMatches={scheduledMatches}
+                nameLeague={nameLeague}
+            />}
+            {showResults && <OnlyResults
+                finishedMatches={finishedMatches}
+                nameLeague={nameLeague}
+            />}
+            {showCalendar && <CalendarPage
+                scheduledMatches={scheduledMatches}
+                nameLeague={nameLeague}
+            />}
           </div>
         </div>
       </div>

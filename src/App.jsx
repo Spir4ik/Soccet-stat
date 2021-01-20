@@ -3,6 +3,7 @@ import Header from './components/Header.jsx';
 import CardLeague from "./components/CardLeague.jsx";
 import LeaguePage from "./components/LeaguePage.jsx";
 import {Route, Switch} from "react-router";
+import LoadComponent from "./components/LoadComponent.jsx";
 import './styles/index.scss';
 import './styles/stylesLeagueList.scss';
 

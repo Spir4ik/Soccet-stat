@@ -16,7 +16,23 @@ const yearSeason = handleActions({
 }, "2020"
 )
 
+const loadStatusScheduled = handleActions({
+    [actions.getLoadStatusScheduled](state, {payload: {loadStatusScheduled}}) {
+        return loadStatusScheduled
+    }
+}, true
+)
+
+const loadStatusFinished = handleActions({
+        [actions.getLoadStatusFinished](state, {payload: {loadStatusFinished}}) {
+            return loadStatusFinished
+        }
+    }, true
+)
+
 export default combineReducers({
     numberLeague,
     yearSeason,
+    loadStatusScheduled,
+    loadStatusFinished
 })
