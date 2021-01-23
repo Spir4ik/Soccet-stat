@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import FinishedMatches from "./FinishedMatches.jsx";
 import ScheduledMatches from "./ScheduledMatches.jsx";
 
@@ -10,14 +10,13 @@ function BodyResults(props) {
     } = props;
 
     const showFirstFinishedMatches = () => {
-        const testArr =  finishedMatches.filter(item => (item.status.includes("FINISHED")) ? item : null)
+        const testArr = finishedMatches.filter(item => (item.status.includes("FINISHED")) ? item : null)
         let elems = testArr.length - 16;
         return (testArr.length <= 16) ? testArr : testArr.slice(elems)
     };
 
     const showFirstScheduledMatches = () => {
-        let listElems = scheduledMatches.length - 16;
-        return (scheduledMatches.length <= 16) ? scheduledMatches : scheduledMatches.slice(listElems)
+        return (scheduledMatches.length >= 16) ? scheduledMatches.slice(0, 16) : scheduledMatches
     }
 
     return(
