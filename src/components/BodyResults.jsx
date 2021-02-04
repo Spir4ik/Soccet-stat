@@ -6,13 +6,13 @@ function BodyResults(props) {
     const {
         scheduledMatches,
         finishedMatches,
-        nameLeague
+        // nameLeague
     } = props;
+    const nameLeague = JSON.parse(localStorage.getItem('name_league'))
 
     const showFirstFinishedMatches = () => {
-        const testArr = finishedMatches.filter(item => (item.status.includes("FINISHED")) ? item : null)
-        let elems = testArr.length - 16;
-        return (testArr.length <= 16) ? testArr : testArr.slice(elems)
+        let elems = finishedMatches.length - 16;
+        return (finishedMatches.length <= 16) ? finishedMatches : finishedMatches.slice(elems)
     };
 
     const showFirstScheduledMatches = () => {
@@ -30,7 +30,7 @@ function BodyResults(props) {
                 <div className="league-statistics">
                     <div className="league-statistics__body">
                         <div className="league-statistics__header">
-                            {nameLeague}
+                            {nameLeague.nameLeagueName}
                         </div>
                         <div className="league-statistics__item">
                             {showFirstFinishedMatches().map(({
@@ -57,7 +57,7 @@ function BodyResults(props) {
                 <div className="league-statistics">
                     <div className="league-statistics__body">
                         <div className="league-statistics__header">
-                            {nameLeague}
+                            {nameLeague.nameLeagueName}
                         </div>
                         <div className="league-statistics__item">
                             {showFirstScheduledMatches().map(({awayTeam, homeTeam, id, utcDate, score}) => {

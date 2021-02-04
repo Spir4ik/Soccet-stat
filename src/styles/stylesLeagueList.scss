@@ -99,6 +99,43 @@
       .league__body {
         margin: 15px 0 0 0;
         .body__results {
+          .results__filters {
+            display: flex;
+            justify-content: space-between;
+            margin: 0 0 20px 0;
+            //label {
+            //  display: flex;
+            //  align-items: center;
+            //  margin: 0 10px 0 20px;
+            //}
+            .filters__date {
+              flex-direction: column;
+              input {
+                border: none;
+                border-bottom: 1px solid #858585;
+                background-color: transparent;
+              }
+              .filters__from {
+                margin: 0 0 10px 8.5px;
+              }
+            }
+            @media (max-width: 768px) {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              margin: -20px 0 20px 0;
+              .filters__from {
+                margin: 0 9px;
+              }
+              .filters__name-team {
+                margin: 0 0 20px 0;
+              }
+              input {
+                justify-content: flex-end;
+              }
+            }
+          }
           .latter-result {
             &.scheduled-mathes {
               margin: 15px 0 0 0;

@@ -93,7 +93,8 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: cssLoaders()
+        // use: cssLoaders()
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.(ttf|woff|woff2|eot)$/,

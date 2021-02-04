@@ -18,12 +18,18 @@ function CardLeague() {
                 </div>
                 <div className="card">
                     {leagueList.map(({img, name, id}) => {
+                        let parametersList = {
+                            numberLeagueId: id,
+                            numberLeagueImg: img,
+                            nameLeagueName: name
+                        }
                         return(
                             <div className="cardLeague"
                                  key={id}
                                  onClick={() => {
                                      window.location.assign(window.location.href + 'listleague')
                                      dispatch(actions.getNumberLeague({numberLeagueId: id, numberLeagueImg: img, nameLeague: name}))
+                                     localStorage.setItem('name_league', JSON.stringify(parametersList))
                                      }
                                  }
                             >
