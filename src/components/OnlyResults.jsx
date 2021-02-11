@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import ru from 'date-fns/locale/ru'
 import DatePicker, {registerLocale} from "react-datepicker"
-import {useHistory} from "react-router";
 import FinishedMatches from "./FinishedMatches.jsx";
 import TextField from "@material-ui/core/TextField";
 
@@ -9,10 +8,8 @@ function OnlyResults(props) {
     const {finishedMatches, nameLeague, firstMatchesDate, lastMatchesDate} = props;
     const [test, setTest] = useState('')
     const [testArray, setTestArray] = useState([])
-    // const mbWorked = lastMatchesDate.slice(0, 10).split('-').join('/')
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null)
-    const history = useHistory();
     registerLocale("ru", ru);
 
     useEffect(() => {
@@ -31,32 +28,6 @@ function OnlyResults(props) {
         }
         return null
     }, [])
-
-    const testAgainFunc = () => {
-        // if (testArray) {
-        //     return setTestArray(testArray.filter(item => {
-        //         const dateNum = Date.parse(item.utcDate)
-        //         // if (!startDate && !endDate) return item
-        //         return (dateNum >= startDate.getTime() && dateNum <= endDate.getTime()) ? item : null
-        //     }))
-        // }
-        return setTestArray(finishedMatches.filter(item => {
-            const dateNum = Date.parse(item.utcDate)
-            // if (!startDate && !endDate) return item
-            return (dateNum >= startDate.getTime() && dateNum <= endDate.getTime()) ? item : null
-        }))
-        // testArray ? setTestArray(testArray.filter(item => {
-        //             const dateNum = Date.parse(item.utcDate)
-        //         console.log('one')
-        //
-        //             return (dateNum >= startDate.getTime() && dateNum <= endDate.getTime()) ? item : null
-        // }))
-        //      :      setTestArray(finishedMatches.filter(item => {
-        //             const dateNum = Date.parse(item.utcDate)
-        //             console.log('two')
-        //             return (dateNum >= startDate.getTime() && dateNum <= endDate.getTime()) ? item : null
-        // }))
-    }
 
     const testFunc = () => {
         if (!startDate && !endDate) {
@@ -90,7 +61,7 @@ function OnlyResults(props) {
                 const [dayTo, monthTo, yearTo] = testURL.dateto.split('.')
 
                 setStartDate(new Date(parseInt(yearFrom), parseInt(monthFrom) - 1, parseInt(dayFrom)))
-                setEndDate(new Date(parseInt(yearTo), parseInt(monthTo) - 1, parseInt(dayTo)))
+                setEndDate(new Date(parseInt(yearTo), parseInt(monthTo) - 1, parseInt(dayTo), 23, 59))
             }
             setTest(testURL.team)
             testFunc()
@@ -98,91 +69,50 @@ function OnlyResults(props) {
         return null
     }, [finishedMatches])
 
-    // console.log(testFunc())
-
-
     return(
         <div className="body__results">
-            {/*<div className="results__filters">*/}
-            {/*    <form className="filters__name-team">*/}
-            {/*        <TextField*/}
-            {/*            id="standard-search"*/}
-            {/*            label="Введите команду"*/}
-            {/*            name="team"*/}
-            {/*            onChange={(e) => setTest(e.target.value)}*/}
-            {/*            value={test}*/}
-            {/*            type="search"*/}
-            {/*            placeholder="Sevilla FC"*/}
-            {/*        />*/}
-            {/*    </form>*/}
-            {/*    <div className="filters__date">*/}
-            {/*        <div className="filters__from">*/}
-            {/*            <label> С </label>*/}
-            {/*            <DatePicker*/}
-            {/*                locale={ru}*/}
-            {/*                dateFormat="dd.MM.yyyy"*/}
-            {/*                selected={startDate}*/}
-            {/*                minDate={firstMatchesDate}*/}
-            {/*                maxDate={lastMatchesDate}*/}
-            {/*                onChange={date => setStartDate(date)}*/}
-            {/*                placeholderText="Выберите начальную дату..."*/}
-            {/*            />*/}
-            {/*        </div>*/}
-            {/*        <div className="filters__to">*/}
-            {/*            <label> По </label>*/}
-            {/*            <DatePicker*/}
-            {/*                locale={ru}*/}
-            {/*                dateFormat="dd.MM.yyyy"*/}
-            {/*                selected={endDate}*/}
-            {/*                maxDate={lastMatchesDate}*/}
-            {/*                minDate={firstMatchesDate}*/}
-            {/*                disabled={startDate ? 'false' : 'true'}*/}
-            {/*                onChange={date => setEndDate(date)}*/}
-            {/*                placeholderText="Выберите конечную дату..."*/}
-            {/*            />*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
             <div className="latter-result only-result">
                 <form className="filters__name-team" autoComplete="off">
-                    <TextField
-                        id="standard-search"
-                        label="Введите команду"
-                        name="team"
-                        onChange={(e) => setTest(e.target.value.trim())}
-                        value={test}
-                        type="search"
-                        placeholder="Sevilla FC"
-                    />
-                <div className="filters__date">
-                    <div className="filters__from">
-                        <label> С </label>
-                        <DatePicker
-                            locale={ru}
-                            dateFormat="dd.MM.yyyy"
-                            selected={startDate}
-                            minDate={firstMatchesDate}
-                            maxDate={lastMatchesDate}
-                            name="datefrom"
-                            onChange={date => setStartDate(date)}
-                            placeholderText="Выберите начальную дату..."
+                    <div className="results__filters">
+                        <TextField
+                            id="standard-search"
+                            label="Введите команду"
+                            name="team"
+                            onChange={(e) => setTest(e.target.value.trim())}
+                            value={test}
+                            type="search"
+                            placeholder="Sevilla FC"
                         />
+                        <div className="filters__date">
+                            <div className="filters__from">
+                                <label> С </label>
+                                <DatePicker
+                                    locale={ru}
+                                    dateFormat="dd.MM.yyyy"
+                                    selected={startDate}
+                                    minDate={firstMatchesDate}
+                                    maxDate={lastMatchesDate}
+                                    name="datefrom"
+                                    onChange={date => setStartDate(date)}
+                                    placeholderText="Выберите начальную дату..."
+                                />
+                            </div>
+                            <div className="filters__to">
+                                <label> По </label>
+                                <DatePicker
+                                    locale={ru}
+                                    dateFormat="dd.MM.yyyy"
+                                    selected={endDate}
+                                    maxDate={lastMatchesDate}
+                                    minDate={startDate}
+                                    name="dateto"
+                                    // disabled={startDate ? 'false' : 'true'}
+                                    onChange={date => setEndDate(date)}
+                                    placeholderText="Выберите конечную дату..."
+                                />
+                            </div>
+                        </div>
                     </div>
-                    <div className="filters__to">
-                        <label> По </label>
-                        <DatePicker
-                            locale={ru}
-                            dateFormat="dd.MM.yyyy"
-                            selected={endDate}
-                            maxDate={lastMatchesDate}
-                            minDate={firstMatchesDate}
-                            name="dateto"
-                            // disabled={startDate ? 'false' : 'true'}
-                            onChange={date => setEndDate(date)}
-                            placeholderText="Выберите конечную дату..."
-                        />
-                    </div>
-                </div>
                 <div className="tabs-body">
                     <div className="tabs-text">
                         <button type="submit">Найти</button>
@@ -196,17 +126,6 @@ function OnlyResults(props) {
                             {nameLeague}
                         </div>
                         <div className="league-statistics__item">
-                            {/*{finishedMatches.map(({*/}
-                            {/*                                     awayTeam, homeTeam, id, utcDate, score,*/}
-                            {/*                                 }) => (*/}
-                            {/*    <FinishedMatches*/}
-                            {/*        awayTeam={awayTeam}*/}
-                            {/*        homeTeam={homeTeam}*/}
-                            {/*        key={id}*/}
-                            {/*        utcDate={utcDate}*/}
-                            {/*        score={score}*/}
-                            {/*    />*/}
-                            {/*))}*/}
                             {testArray.length === 0 ? finishedMatches.map(({awayTeam, homeTeam, id, utcDate, score,}) => (
                                 <FinishedMatches
                                     awayTeam={awayTeam}

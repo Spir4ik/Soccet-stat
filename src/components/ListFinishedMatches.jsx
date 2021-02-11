@@ -55,7 +55,6 @@ function ListFinishedMatches() {
     //     })
     // }
 
-
     return(
         <React.Fragment>
             <div className="league__nav">
@@ -70,22 +69,6 @@ function ListFinishedMatches() {
                 </div>
             </div>
             <div className="league__body">
-                {/*<form onSubmit={(e) => {*/}
-                {/*    // e.preventDefault();*/}
-                {/*    // setFinishedMatches(testFunc())*/}
-                {/*    // const paramUrl = window.location.href.split('?')[1]*/}
-                {/*    // console.log(paramUrl.slice(5).split('+'))*/}
-                {/*}}>*/}
-                {/*    <TextField*/}
-                {/*        id="standard-search"*/}
-                {/*        label="Введите команду"*/}
-                {/*        name="team"*/}
-                {/*        onChange={(e) => setTest(e.target.value)}*/}
-                {/*        value={test}*/}
-                {/*        type="search"*/}
-                {/*        placeholder="Sevilla FC"*/}
-                {/*    />*/}
-                {/*</form>*/}
                 <OnlyResults
                     finishedMatches={finishedMatches}
                     firstMatchesDate={firstMatchesDate}

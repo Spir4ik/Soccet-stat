@@ -1,33 +1,17 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Link } from "react-router-dom";
 
 function LeagueNav() {
-    const [showOverview, setShowOverview] = useState(true);
-    const [showResults, setShowResults] = useState(false);
-    const [showCalendar, setShowCalendar] = useState(false);
-
     return(
         <div className="league__nav">
-            <div className={showOverview ? "nav__item first" : "nav__item"} onClick={() => {
-                setShowOverview(true)
-                setShowResults(false)
-                setShowCalendar(false)
-            }}>
-                <p>Обзор</p>
+            <div className={window.location.href.includes('/results') || window.location.href.includes('/calendar') ? "nav__item" : "nav__item first"}>
+                <Link to="/listleague">Обзор</Link>
             </div>
-            <div className={showResults ? "nav__item first" : "nav__item"} onClick={() => {
-                setShowOverview(false)
-                setShowResults(true)
-                setShowCalendar(false)
-            }}>
-                <p>Результаты</p>
+            <div className={window.location.href.includes('/results') ? "nav__item first" : "nav__item"}>
+                <Link to="/listleague/results">Результаты</Link>
             </div>
-            <div className={showCalendar ? "nav__item first" : "nav__item"} onClick={() => {
-                setShowOverview(false)
-                setShowResults(false)
-                setShowCalendar(true)
-            }}>
-                <p>Календарь</p>
+            <div className={window.location.href.includes('/calendar') ? "nav__item first" : "nav__item"}>
+                <Link to="/listleague/calendar">Календарь</Link>
             </div>
         </div>
     )
