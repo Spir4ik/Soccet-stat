@@ -43,6 +43,9 @@
 
 .league {
   padding: 85px 25px 0 25px;
+  @media (max-width: 768px) {
+    padding: 45px 10px 0 10px;
+  }
   .container {
     max-width: 800px;
     .league__row {
@@ -98,6 +101,26 @@
       }
       .league__body {
         margin: 15px 0 0 0;
+        .league__autocomplete {
+          //display: flex;
+          input {
+            margin: 2px 0 0 0 ;
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid #858585;
+            padding: 5px;
+          }
+          button {
+            background-color: #A4CFC5;
+            color: white;
+            border: none;
+            padding: 5px;
+            border-bottom: 1px solid #858585;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
         .body__results {
           .results__filters {
             display: flex;
@@ -185,7 +208,8 @@
                         cursor: pointer;
                       }
                       @media (max-width: 768px) {
-                        font-size: 13px;
+                        font-size: 9px;
+                        align-items: center;
                       }
                     }
                     .league-statistics__date {
