@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {Route, Switch} from "react-router";
 import {useSelector, useDispatch} from "react-redux";
 import SelectSeason from "./SelectSeason.jsx";
@@ -9,42 +9,9 @@ import ListScheduledMatches from "./ListScheduledMatches.jsx";
 
 
 function LeaguePage() {
-    const [finishedMatches, setFinishedMatches] = useState([]);
-    const [scheduledMatches, setScheduledMatches] = useState([]);
-    const dispatch = useDispatch();
-
-
-    const numberLeagueId = useSelector(state => state.numberLeague.numberLeagueId);
-    const numberLeagueImg = useSelector(state => state.numberLeague.numberLeagueImg);
     const yearSeason = useSelector(state => state.yearSeason);
-    // const nameLeague = useSelector(state => state.numberLeague.nameLeague);
-    const loadStatusScheduled = useSelector(state => state.loadStatusScheduled);
-    const loadStatusFinished = useSelector(state => state.loadStatusFinished);
 
     const nameLeague = JSON.parse(localStorage.getItem('name_league'))
-
-    // useEffect(async () => {
-    //     const nameLeague = localStorage.getItem('name_league')
-    //     try {
-    //        await axios({
-    //             url: `https://api.football-data.org/v2/competitions/${nameLeague}/matches?season=${yearSeason}`,
-    //             method: 'GET',
-    //             headers: {
-    //                 'X-Auth-Token': '31da4377f6bd472d89c5c79443bfb5db',
-    //                 'Content-type': 'application/json',
-    //             }
-    //         }).then(res => {
-    //            setFinishedMatches(res.data.matches);
-    //            setScheduledMatches(res.data.matches.filter(item => (item.status.includes("SCHEDULED")) ? item : null))
-    //            dispatch(
-    //                 actions.getLoadStatusScheduled({loadStatusScheduled: false})
-    //            )
-    //         })
-    //     }
-    //     catch(e) {
-    //         alert(`Что то пошло не так! ${e}`)
-    //     }
-    // }, [yearSeason])
 
     const currentSeason = () => {
         switch (yearSeason) {
@@ -63,25 +30,41 @@ function LeaguePage() {
         <div className="league">
             <div className="container">
                 <div className="league__row">
-                    <SelectSeason />
-                    {(window.location.href.includes('/Team_Calendar')) ? null
-                        : <div className="league__header">
-                            <div className="header__logo">
-                                <img src={nameLeague.numberLeagueImg} alt="" />
+                    {(window.location.href.includes('/Team_Calendar') && window.location.href.includes('/Team_Calendar/') === false) ?
+                        <SelectSeason />
+                        :
+                        (window.location.href.includes('/Team_Calendar/') === true) ?
+                        <React.Fragment>
+                            <div className="league__header" style={{margin: '15px 0 0 8px'}}>
+                                <div className="header__logo">
+                                    <img
+                                        src={JSON.parse(localStorage.getItem('selectTeam')).imgTeam}
+                                        style={{height: '120px', width: '120px'}}
+                                        alt=""
+                                    />
+                                </div>
+                                <div className="header__info">
+                                    <span>{JSON.parse(localStorage.getItem('selectTeam')).nameTeam}</span>
+                                </div>
                             </div>
-                            <div className="header__info">
-                                <span>{nameLeague.nameLeagueName}</span>
-                                <p>{currentSeason()}</p>
+                        </React.Fragment>
+                        :
+                        <React.Fragment>
+                            <SelectSeason />
+                            <div className="league__header">
+                                <div className="header__logo">
+                                    <img src={nameLeague.numberLeagueImg} alt="" />
+                                </div>
+                                <div className="header__info">
+                                    <span>{nameLeague.nameLeagueName}</span>
+                                    <p>{currentSeason()}</p>
+                                </div>
                             </div>
-                        </div>
+                        </React.Fragment>
                     }
                     <Switch>
                         <Route exact path="/listleague">
                             <ListCurrentLeague
-                                scheduledMatches={scheduledMatches}
-                                finishedMatches={finishedMatches}
-                                numberLeagueImg={numberLeagueImg}
-                                yearSeason={yearSeason}
                                 nameLeague={nameLeague}
                             />
                         </Route>

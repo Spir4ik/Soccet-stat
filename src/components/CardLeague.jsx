@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios';
+import React from 'react'
 import {useDispatch, useSelector} from "react-redux";
-import Link from "react-router-dom";
 import leagueList from "../leagueList";
 import SelectSeason from "./SelectSeason.jsx";
 import * as actions from '../actions'
@@ -30,6 +28,7 @@ function CardLeague() {
                                      window.location.assign(window.location.href + 'listleague')
                                      dispatch(actions.getNumberLeague({numberLeagueId: id, numberLeagueImg: img, nameLeague: name}))
                                      localStorage.setItem('name_league', JSON.stringify(parametersList))
+                                     window.location.reload();
                                      }
                                  }
                             >

@@ -26,20 +26,9 @@ function CalendarPage(props) {
                 <div className="league-statistics">
                     <div className="league-statistics__body">
                         <div className="league-statistics__header">
-                            {nameLeague}
+                            {JSON.parse(localStorage.getItem('name_league')).nameLeagueName}
                         </div>
                         <div className="league-statistics__item">
-                            {/*{scheduledMatches.map(({awayTeam, homeTeam, id, utcDate, score}) => {*/}
-                            {/*    return (*/}
-                            {/*        <ScheduledMatches*/}
-                            {/*            awayTeam={awayTeam}*/}
-                            {/*            homeTeam={homeTeam}*/}
-                            {/*            key={id}*/}
-                            {/*            utcDate={utcDate}*/}
-                            {/*            score={score}*/}
-                            {/*        />*/}
-                            {/*    )*/}
-                            {/*})}*/}
                             {testArray.length === 0 ? scheduledMatches.map(({awayTeam, homeTeam, id, utcDate, score,}) => (
                                 <ScheduledMatches
                                     awayTeam={awayTeam}

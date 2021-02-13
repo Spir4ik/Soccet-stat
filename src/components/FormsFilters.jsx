@@ -29,11 +29,6 @@ function FormsFilters(props) {
 
     const testFunc = () => {
         if (!startDate && !endDate) {
-            // setTestArray(arraysMatches.filter(item => {
-            //     if (item.awayTeam.name.includes(test) || item.homeTeam.name.includes(test)) {
-            //         return item
-            //     }
-            // }))
             updateArray(arraysMatches.filter(item => {
                     if (item.awayTeam.name.includes(test) || item.homeTeam.name.includes(test)) {
                         return item
@@ -41,22 +36,12 @@ function FormsFilters(props) {
                 }))
         }
         if (!test && startDate && endDate) {
-            // setTestArray(arraysMatches.filter(item => {
-            //     const dateNum = Date.parse(item.utcDate)
-            //     return (dateNum >= startDate.getTime() && dateNum <= endDate.getTime()) ? item : null
-            // }))
             updateArray(arraysMatches.filter(item => {
                 const dateNum = Date.parse(item.utcDate)
                 return (dateNum >= startDate.getTime() && dateNum <= endDate.getTime()) ? item : null
             }))
         }
         if (test && startDate && endDate) {
-            // setTestArray(arraysMatches.filter(item => {
-            //     const dateNum = Date.parse(item.utcDate)
-            //     return ((item.awayTeam.name.includes(test) ||
-            //         item.homeTeam.name.includes(test)) &&
-            //         (dateNum >= startDate.getTime() && dateNum <= endDate.getTime())) ? item : null
-            // }))
             updateArray(arraysMatches.filter(item => {
                 const dateNum = Date.parse(item.utcDate)
                 return ((item.awayTeam.name.includes(test) ||
@@ -117,7 +102,7 @@ function FormsFilters(props) {
                             maxDate={lastMatchesDate}
                             minDate={startDate}
                             name="dateto"
-                            // disabled={startDate ? 'false' : 'true'}
+                            disabled={startDate ? 'false' : 'true'}
                             onChange={date => setEndDate(date)}
                             placeholderText="Выберите конечную дату..."
                         />

@@ -8,15 +8,13 @@ function ListCurrentLeague(props) {
   const [finishedMatches, setFinishedMatches] = useState([]);
   const [scheduledMatches, setScheduledMatches] = useState([]);
 
-  const loadStatusScheduled = useSelector(state => state.loadStatusScheduled);
-  const loadStatusFinished = useSelector(state => state.loadStatusFinished);
   const yearSeason = useSelector(state => state.yearSeason);
 
   useEffect(async () => {
     const nameLeague = JSON.parse(localStorage.getItem('name_league'))
     try {
       await axios({
-        url: `https://api.football-data.org/v2/competitions/${nameLeague.numberLeagueId}/matches?status=SCHEDULED&&season=${yearSeason}`,
+        url: `https://api.football-data.org/v2/competitions/${nameLeague.numberLeagueId}/matches?status=SCHEDULED&season=${yearSeason}`,
         method: 'GET',
         headers: {
           'X-Auth-Token': '31da4377f6bd472d89c5c79443bfb5db',
@@ -27,7 +25,7 @@ function ListCurrentLeague(props) {
       })
 
       await axios({
-        url: `https://api.football-data.org/v2/competitions/${nameLeague.numberLeagueId}/matches?status=FINISHED&&season=${yearSeason}`,
+        url: `https://api.football-data.org/v2/competitions/${nameLeague.numberLeagueId}/matches?status=FINISHED&season=${yearSeason}`,
         method: 'GET',
         headers: {
           'X-Auth-Token': '31da4377f6bd472d89c5c79443bfb5db',
@@ -42,26 +40,11 @@ function ListCurrentLeague(props) {
   }, [yearSeason])
 
   const {
-    // scheduledMatches,
-    // finishedMatches,
-    // numberLeagueImg,
-    // yearSeason,
     nameLeague,
   } = props;
 
   return (
       <React.Fragment>
-        {/*<div className="league__nav">*/}
-        {/*  <div className="nav__item first">*/}
-        {/*    <Link to="/listleague">Обзор</Link>*/}
-        {/*  </div>*/}
-        {/*  <div className="nav__item">*/}
-        {/*    <Link to="/listleague/results">Результаты</Link>*/}
-        {/*  </div>*/}
-        {/*  <div className="nav__item">*/}
-        {/*    <Link to="/listleague/calendar">Календарь</Link>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
         <LeagueNav />
         <div className="league__body">
           <BodyResults

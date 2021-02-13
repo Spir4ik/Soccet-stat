@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import FinishedMatches from "./FinishedMatches.jsx";
 import ScheduledMatches from "./ScheduledMatches.jsx";
 
@@ -48,7 +48,7 @@ function BodyResults(props) {
                     </div>
                 </div>
             </div>
-            <div className="latter-result scheduled-mathes">
+            {scheduledMatches.length !== 0 && <div className="latter-result scheduled-mathes">
                 <div className="tabs-body">
                     <div className="tabs-text">
                         <span>Предстоящие матчи</span>
@@ -74,7 +74,7 @@ function BodyResults(props) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>}
         </div>
     )
 }

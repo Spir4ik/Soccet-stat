@@ -1,5 +1,4 @@
 import React from 'react'
-// import {Link} from "react-router-dom";
 
 function AllTeamsCurrentLeague(props) {
     const {name, crestUrl, id} = props
@@ -12,6 +11,7 @@ function AllTeamsCurrentLeague(props) {
                 nameTeam: name
             }
             localStorage.setItem('selectTeam', JSON.stringify(parametersSelectedTeam))
+            window.history.push('hello!')
         }}>
             <div className="league-statistics__date">
                 <img src={crestUrl} alt="" />
