@@ -2,13 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {useSelector} from "react-redux";
 import BodyResults from "./BodyResults.jsx";
-import SelectSeason from "./SelectSeason.jsx";
-import OnlyResults from "./OnlyResults.jsx";
-import CalendarPage from "./CalendarPage.jsx";
-import {Link} from 'react-router-dom'
-// import LeagueNav from "./LeagueNav.jsx";
-import LoadComponent from "./LoadComponent.jsx";
-import * as actions from "../actions";
+import LeagueNav from "./LeagueNav.jsx";
 
 function ListCurrentLeague(props) {
   const [finishedMatches, setFinishedMatches] = useState([]);
@@ -42,8 +36,7 @@ function ListCurrentLeague(props) {
       }).then(res => {
         setFinishedMatches(res.data.matches)
       })
-    }
-    catch(e) {
+    } catch(e) {
       alert(`Что то пошло не так! ${e}`)
     }
   }, [yearSeason])
@@ -58,17 +51,18 @@ function ListCurrentLeague(props) {
 
   return (
       <React.Fragment>
-        <div className="league__nav">
-          <div className="nav__item first">
-            <Link to="/listleague">Обзор</Link>
-          </div>
-          <div className="nav__item">
-            <Link to="/listleague/results">Результаты</Link>
-          </div>
-          <div className="nav__item">
-            <Link to="/listleague/calendar">Календарь</Link>
-          </div>
-        </div>
+        {/*<div className="league__nav">*/}
+        {/*  <div className="nav__item first">*/}
+        {/*    <Link to="/listleague">Обзор</Link>*/}
+        {/*  </div>*/}
+        {/*  <div className="nav__item">*/}
+        {/*    <Link to="/listleague/results">Результаты</Link>*/}
+        {/*  </div>*/}
+        {/*  <div className="nav__item">*/}
+        {/*    <Link to="/listleague/calendar">Календарь</Link>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
+        <LeagueNav />
         <div className="league__body">
           <BodyResults
               finishedMatches={finishedMatches}

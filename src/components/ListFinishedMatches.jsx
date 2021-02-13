@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import OnlyResults from "./OnlyResults.jsx";
+import LeagueNav from "./LeagueNav.jsx";
 
 function ListFinishedMatches() {
     const [finishedMatches, setFinishedMatches] = useState([]);
@@ -57,17 +58,18 @@ function ListFinishedMatches() {
 
     return(
         <React.Fragment>
-            <div className="league__nav">
-                <div className="nav__item">
-                    <Link to="/listleague">Обзор</Link>
-                </div>
-                <div className="nav__item first">
-                    <Link to="/listleague/results">Результаты</Link>
-                </div>
-                <div className="nav__item">
-                    <Link to="/listleague/calendar">Календарь</Link>
-                </div>
-            </div>
+            {/*<div className="league__nav">*/}
+            {/*    <div className="nav__item">*/}
+            {/*        <Link to="/listleague">Обзор</Link>*/}
+            {/*    </div>*/}
+            {/*    <div className="nav__item first">*/}
+            {/*        <Link to="/listleague/results">Результаты</Link>*/}
+            {/*    </div>*/}
+            {/*    <div className="nav__item">*/}
+            {/*        <Link to="/listleague/calendar">Календарь</Link>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            <LeagueNav />
             <div className="league__body">
                 <OnlyResults
                     finishedMatches={finishedMatches}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {Link} from "react-router-dom";
 import cn from 'classnames'
 
 
@@ -28,10 +29,10 @@ function Header() {
                         </div>
                         <nav className={classesForHeaderMenu}>
                             <ul className="header__list">
-                                <li><a href="#" className="header__link">Список лиг</a></li>
-                                <li><a href="#" className="header__link">Список команд</a></li>
-                                <li><a href="#" className="header__link">Календарь лиги</a></li>
-                                <li><a href="#" className="header__link">Календарь одной команды</a></li>
+                                <li><Link to="/" className="header__link">Список лиг</Link></li>
+                                {/*<li><a href="#" className="header__link">Список команд</a></li>*/}
+                                {/*<li><a href="#" className="header__link">Календарь лиги</a></li>*/}
+                                <li><Link to="/listleague/Team_Calendar" className="header__link">Календарь одной команды</Link></li>
                             </ul>
                         </nav>
                     </div>

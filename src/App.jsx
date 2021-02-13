@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Header from './components/Header.jsx';
 import CardLeague from "./components/CardLeague.jsx";
 import LeaguePage from "./components/LeaguePage.jsx";

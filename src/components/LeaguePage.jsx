@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios';
 import {Route, Switch} from "react-router";
 import {useSelector, useDispatch} from "react-redux";
 import SelectSeason from "./SelectSeason.jsx";
 import ListCurrentLeague from "./ListCurrentLeague.jsx";
 import ListFinishedMatches from "./ListFinishedMatches.jsx";
-import * as actions from '../actions';
-import LeagueNav from "./LeagueNav.jsx";
+import TeamCalendar from "./TeamCalendar.jsx";
+import ListScheduledMatches from "./ListScheduledMatches.jsx";
 
 
 function LeaguePage() {
@@ -65,15 +64,17 @@ function LeaguePage() {
             <div className="container">
                 <div className="league__row">
                     <SelectSeason />
-                    <div className="league__header">
-                        <div className="header__logo">
-                            <img src={nameLeague.numberLeagueImg} alt="" />
+                    {(window.location.href.includes('/Team_Calendar')) ? null
+                        : <div className="league__header">
+                            <div className="header__logo">
+                                <img src={nameLeague.numberLeagueImg} alt="" />
+                            </div>
+                            <div className="header__info">
+                                <span>{nameLeague.nameLeagueName}</span>
+                                <p>{currentSeason()}</p>
+                            </div>
                         </div>
-                        <div className="header__info">
-                            <span>{nameLeague.nameLeagueName}</span>
-                            <p>{currentSeason()}</p>
-                        </div>
-                    </div>
+                    }
                     <Switch>
                         <Route exact path="/listleague">
                             <ListCurrentLeague
@@ -84,10 +85,9 @@ function LeaguePage() {
                                 nameLeague={nameLeague}
                             />
                         </Route>
-
                         <Route path="/listleague/results" component={ListFinishedMatches} />
-
-
+                        <Route path="/listleague/calendar" component={ListScheduledMatches} />
+                        <Route path="/listleague/Team_Calendar" component={TeamCalendar} />
                     </Switch>
                 </div>
             </div>
