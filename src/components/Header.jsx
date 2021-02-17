@@ -33,7 +33,7 @@ function Header() {
                                     <Link to="/" className="header__link">Список лиг</Link>
                                 </li>
                                 {(window.location.href.includes('#/listleague')) ?
-                                    <li>
+                                    <li onClick={() => setShowBurger(!showBurger)}>
                                         <Link to='/listleague/Team_Calendar'
                                               className="header__link"
                                         >
