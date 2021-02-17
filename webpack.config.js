@@ -55,6 +55,7 @@ module.exports = {
     main: ['@babel/polyfill', './index.js'],
   },
   output: {
+    // publicPath: '/',
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
     // publicPath: '/dist/',

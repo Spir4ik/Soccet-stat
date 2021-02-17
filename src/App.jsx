@@ -1,8 +1,8 @@
 import React from 'react';
+import {Route, Switch} from "react-router-dom";
 import Header from './components/Header.jsx';
 import CardLeague from "./components/CardLeague.jsx";
 import LeaguePage from "./components/LeaguePage.jsx";
-import {Route, Switch} from "react-router";
 import './styles/index.scss';
 import './styles/stylesLeagueList.scss';
 import 'react-datepicker/dist/react-datepicker.css';
