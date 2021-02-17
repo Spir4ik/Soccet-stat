@@ -41,7 +41,7 @@ function Header() {
                                         </Link>
                                     </li>
                                     :
-                                    <li>
+                                    <li onClick={() => setShowBurger(!showBurger)}>
                                         <Link to="/"
                                               className="header__link"
                                               onClick={() => alert('Выберите лигу!')}
