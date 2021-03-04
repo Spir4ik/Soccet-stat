@@ -4,14 +4,17 @@ import FormsFilters from "./FormsFilters.jsx";
 
 function CalendarPage(props) {
     const {scheduledMatches,
-        nameLeague,
         firstMatchesDate,
         lastMatchesDate} = props;
+    const [newScheduledArray, setNewScheduledArray] = useState([])
 
-    const [testArray, setTestArray] = useState([])
+    // useEffect(() => {
+    //     localStorage.removeItem("paramUrlName")
+    //     window.history.pushState({}, document.title, "/" + "#/listleague/calendar")
+    // }, [])
 
     const updateArray = (array) => {
-        setTestArray(array)
+        setNewScheduledArray(array)
     }
 
     return(
@@ -29,7 +32,7 @@ function CalendarPage(props) {
                             {JSON.parse(localStorage.getItem('name_league')).nameLeagueName}
                         </div>
                         <div className="league-statistics__item">
-                            {testArray.length === 0 ? scheduledMatches.map(({awayTeam, homeTeam, id, utcDate, score,}) => (
+                            {newScheduledArray.length === 0 ? scheduledMatches.map(({awayTeam, homeTeam, id, utcDate, score,}) => (
                                 <ScheduledMatches
                                     awayTeam={awayTeam}
                                     homeTeam={homeTeam}
@@ -37,7 +40,7 @@ function CalendarPage(props) {
                                     utcDate={utcDate}
                                     score={score}
                                 />
-                            )) : testArray.map(({awayTeam, homeTeam, id, utcDate, score,}) => (
+                            )) : newScheduledArray.map(({awayTeam, homeTeam, id, utcDate, score,}) => (
                                 <ScheduledMatches
                                     awayTeam={awayTeam}
                                     homeTeam={homeTeam}

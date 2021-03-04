@@ -1,13 +1,8 @@
 import React from 'react'
-import {useDispatch, useSelector} from "react-redux";
 import leagueList from "../leagueList";
 import SelectSeason from "./SelectSeason.jsx";
-import * as actions from '../actions'
 
 function CardLeague() {
-    const numberLeague = useSelector(state => state.numberLeague);
-    const dispatch = useDispatch();
-
     return(
         <div className="content">
             <div className="container">
@@ -26,7 +21,6 @@ function CardLeague() {
                                  key={id}
                                  onClick={() => {
                                      window.location.assign(window.location.href + 'listleague')
-                                     dispatch(actions.getNumberLeague({numberLeagueId: id, numberLeagueImg: img, nameLeague: name}))
                                      localStorage.setItem('name_league', JSON.stringify(parametersList))
                                      window.location.reload();
                                      }

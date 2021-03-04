@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import AllTeamsCurrentLeague from "./AllTeamsCurrentLeague.jsx";
 import {useSelector} from "react-redux";
 import axios from "axios";
+import AsyncCallsMatches from "./Async_calls/AsyncCallsMatches";
 
 function SelectTeamPage() {
     const [listTeams, setListTeams] = useState([])
@@ -14,19 +15,33 @@ function SelectTeamPage() {
     useEffect(async () => {
         const nameLeague = JSON.parse(localStorage.getItem('name_league'))
         try {
-            await axios({
-                url: `https://api.football-data.org/v2/competitions/${nameLeague.numberLeagueId}/teams?season=${yearSeason}`,
-                method: 'GET',
-                headers: {
-                    'X-Auth-Token': '31da4377f6bd472d89c5c79443bfb5db',
-                    'Content-type': 'application/json',
-                }
-            }).then(res => {
+            // await axios({
+            //     url: `https://api.football-data.org/v2/competitions/${nameLeague.numberLeagueId}/teams?season=${yearSeason}`,
+            //     method: 'GET',
+            //     headers: {
+            //         'X-Auth-Token': '31da4377f6bd472d89c5c79443bfb5db',
+            //         'Content-type': 'application/json',
+            //     }
+            // }).then(res => {
+            //     setListTeams(res.data.teams)
+            // })
+            await axios(AsyncCallsMatches(
+                nameLeague.numberLeagueId,
+                yearSeason,
+                "",
+                "competitions",
+                "teams")
+            )
+            .then(res => {
                 setListTeams(res.data.teams)
             })
 
         } catch(e) {
-            alert(`Что то пошло не так! ${e}`)
+            localStorage.setItem("errorConnect", JSON.stringify({
+                errorName: e.name,
+                errorMessage: e.message
+            }))
+            window.location.replace("#/error")
         }
     }, [yearSeason])
 

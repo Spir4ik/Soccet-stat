@@ -1,8 +1,6 @@
 import React from 'react'
 
-function AllTeamsCurrentLeague(props) {
-    const {name, crestUrl, id} = props
-
+function AllTeamsCurrentLeague({name, crestUrl, id}) {
     return (
         <div className="league-statistics__element team-calendar" onClick={() => {
             const parametersSelectedTeam = {

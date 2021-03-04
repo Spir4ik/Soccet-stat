@@ -48,6 +48,43 @@
   }
   .container {
     max-width: 800px;
+    .league__error {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      margin: 25px 0 0 0;
+      .error__header {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 75px;
+        line-height: 88px;
+        color: #CACEDB;
+      }
+      .error__message {
+        span {
+          font-style: normal;
+          font-weight: normal;
+          font-size: 50px;
+          line-height: 57px;
+          @media (max-width: 768px) {
+            font-size: 32px;
+          }
+        }
+        button {
+          background: #A4CFC5;
+          width: 95px;
+          height: 29px;
+          border: 0.5px solid #92B8AF;
+          box-sizing: border-box;
+          border-radius: 4px;
+          color: white;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
     .league__row {
       display: flex;
       flex-direction: column;
@@ -208,6 +245,21 @@
                   font-size: 15px;
                 }
                 .league-statistics__item {
+                  .league-statistics__not-found {
+                    display: flex;
+                    justify-content: center;
+                    padding: 15px 0 0 0;
+                    img {
+                      padding: 0 10px 0 0;
+                    }
+                    p {
+                      font-size: 20px;
+                    }
+                    span {
+                      font-size: 23px;
+                      font-weight: bold;
+                    }
+                  }
                   .league-statistics__element {
                     display: flex;
                     border: 2px solid #F2F2F2;

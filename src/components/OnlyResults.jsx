@@ -1,17 +1,18 @@
 import React, {useState} from 'react'
 import FinishedMatches from "./FinishedMatches.jsx";
 import FormsFilters from "./FormsFilters.jsx";
+import iconError from '../assets/icon-error.svg'
 
 function OnlyResults(props) {
     const {finishedMatches,
-        nameLeague,
         firstMatchesDate,
         lastMatchesDate
     } = props;
-
     const [newFinishedArray, setNewFinishedArray] = useState([])
+    const [showNotItemDiv, setShowNotItemDiv] = useState("none")
 
     const updateArray = (array) => {
+        setTimeout(() => array.length === 0 ? setShowNotItemDiv("flex") : setShowNotItemDiv("none"), 1000)
         setNewFinishedArray(array)
     }
 
@@ -30,7 +31,8 @@ function OnlyResults(props) {
                             {JSON.parse(localStorage.getItem('name_league')).nameLeagueName}
                         </div>
                         <div className="league-statistics__item">
-                            {newFinishedArray.length === 0 ? finishedMatches.map(({awayTeam, homeTeam, id, utcDate, score,}) => (
+                            {!window.location.search ?
+                                finishedMatches.map(({awayTeam, homeTeam, id, utcDate, score,}) => (
                                 <FinishedMatches
                                     awayTeam={awayTeam}
                                     homeTeam={homeTeam}
@@ -46,7 +48,14 @@ function OnlyResults(props) {
                                     utcDate={utcDate}
                                     score={score}
                                 />
-                            ))}
+                            ))
+                            }
+                            {localStorage.getItem("paramUrlName") && <div className="league-statistics__not-found"
+                                 style={{display: showNotItemDiv}}
+                            >
+                                <img src={iconError} alt="" />
+                                <p> Команды не найдены </p>
+                            </div>}
                         </div>
                     </div>
                 </div>

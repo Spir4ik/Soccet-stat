@@ -5,7 +5,7 @@ import ru from "date-fns/locale/ru";
 
 function FormsFilters(props) {
     const {arraysMatches, firstMatchesDate, lastMatchesDate, updateArray} = props
-    const [test, setTest] = useState('')
+    const [paramUrlTeam, setParamUrlTeam] = useState('')
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null)
     registerLocale("ru", ru);
@@ -18,7 +18,11 @@ function FormsFilters(props) {
                     .split('&')
                     .reduce((tally, total) => {
                         const newTotal = total.split('=')
-                        tally[newTotal[0]] = newTotal[1]
+                        if (newTotal[1].includes("+")) {
+                            tally[newTotal[0]] = newTotal[1].split("+").join(" ")
+                        } else {
+                            tally[newTotal[0]] = newTotal[1]
+                        }
                         return tally
                     }, {})
                 )
@@ -27,25 +31,23 @@ function FormsFilters(props) {
         return null
     }, [])
 
-    const testFunc = () => {
+    const filtersArrayMatches = () => {
         if (!startDate && !endDate) {
-            updateArray(arraysMatches.filter(item => {
-                    if (item.awayTeam.name.includes(test) || item.homeTeam.name.includes(test)) {
-                        return item
-                    }
-                }))
+            updateArray(arraysMatches.filter(item =>
+                (item.awayTeam.name.includes(paramUrlTeam) || item.homeTeam.name.includes(paramUrlTeam))
+            ))
         }
-        if (!test && startDate && endDate) {
+        if (!paramUrlTeam && startDate && endDate) {
             updateArray(arraysMatches.filter(item => {
                 const dateNum = Date.parse(item.utcDate)
                 return (dateNum >= startDate.getTime() && dateNum <= endDate.getTime()) ? item : null
             }))
         }
-        if (test && startDate && endDate) {
+        if (paramUrlTeam && startDate && endDate) {
             updateArray(arraysMatches.filter(item => {
                 const dateNum = Date.parse(item.utcDate)
-                return ((item.awayTeam.name.includes(test) ||
-                    item.homeTeam.name.includes(test)) &&
+                return ((item.awayTeam.name.includes(paramUrlTeam) ||
+                    item.homeTeam.name.includes(paramUrlTeam)) &&
                     (dateNum >= startDate.getTime() && dateNum <= endDate.getTime())) ? item : null
             }))
         }
@@ -53,29 +55,31 @@ function FormsFilters(props) {
 
     useEffect(() => {
         if (window.location.href.includes('?')) {
-            const testURL = JSON.parse(localStorage.getItem('paramUrlName'))
-            if (testURL.datefrom && testURL.dateto) {
-                const [dayFrom, monthFrom, yearFrom] = testURL.datefrom.split('.')
-                const [dayTo, monthTo, yearTo] = testURL.dateto.split('.')
+            const paramURL = JSON.parse(localStorage.getItem('paramUrlName'))
+            if (paramURL.datefrom && paramURL.dateto) {
+                const [dayFrom, monthFrom, yearFrom] = paramURL.datefrom.split('.')
+                const [dayTo, monthTo, yearTo] = paramURL.dateto.split('.')
 
                 setStartDate(new Date(parseInt(yearFrom), parseInt(monthFrom) - 1, parseInt(dayFrom)))
                 setEndDate(new Date(parseInt(yearTo), parseInt(monthTo) - 1, parseInt(dayTo), 23, 59))
             }
-            setTest(testURL.team)
-            testFunc()
+            setParamUrlTeam(paramURL.team)
+            filtersArrayMatches()
         }
         return null
     }, [arraysMatches])
 
     return(
-        <form className="filters__name-team" autoComplete="off">
+        <form className="filters__name-team" autoComplete="off" >
             <div className="results__filters">
                 <TextField
                     id="standard-search"
                     label="Введите команду"
                     name="team"
-                    onChange={(e) => setTest(e.target.value.trim())}
-                    value={test}
+                    onChange={(e) =>
+                        setParamUrlTeam(e.target.value)
+                    }
+                    value={paramUrlTeam}
                     type="search"
                     placeholder="Sevilla FC"
                 />
@@ -102,7 +106,7 @@ function FormsFilters(props) {
                             maxDate={lastMatchesDate}
                             minDate={startDate}
                             name="dateto"
-                            disabled={startDate ? 'false' : 'true'}
+                            disabled={startDate ? false : true}
                             onChange={date => setEndDate(date)}
                             placeholderText="Выберите конечную дату..."
                         />
